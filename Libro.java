@@ -1,10 +1,18 @@
 public class Libro<T> {
     private T valore;
     private String codice;
+    private String titolo;
+    private String autore;
 
     public Libro(T valore) {
         this.valore = valore;
         this. codice = generaCodiceISBN();
+    }
+
+    public Libro (String titolo, String autore){
+        this.titolo = titolo;
+        this.autore = autore;
+        this.codice = generaCodiceISBN();
     }
 
     public T getValore() {
@@ -19,7 +27,23 @@ public class Libro<T> {
         return codice;
     }
 
-    public String generaCodiceISBN () {
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setAutore(String autore) {
+        this.autore = autore;
+    }
+
+    public String getAutore() {
+        return autore;
+    }
+
+    private String generaCodiceISBN () {
         String pre = "978";
         String lingua = "88";
         String edit = String.format("%04d", (int)(Math.random() * 10000));
@@ -39,5 +63,9 @@ public class Libro<T> {
         }
         int remainder = sum % 10;
         return (remainder == 0) ? 0 : (10 - remainder);
+    }
+
+    public void mostraInfo() {
+        System.out.println("Titolo: " + getTitolo() + ", Autore: " + getAutore() + ", Cod. ISBN:" + getCodice());
     }
 }
